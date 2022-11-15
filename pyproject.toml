@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "ci-example"
+version = "0.1.0"
+description = "a project to support continuous integration classes"
+authors = ["André Portela <portela.eng@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "ci_example"}]
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+Django = "^4.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
