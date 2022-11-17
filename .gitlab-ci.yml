@@ -33,4 +33,4 @@ test webapp:
         reports:
             coverage_report:
                 coverage_format: cobertura
-                path: /app/coverage.xml
+                path: coverage.xml
