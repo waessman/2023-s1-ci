@@ -35,5 +35,13 @@ def test_password_validation_empty_str_password_should_return_status_400():
     # when
     response = client.post("/", data=json.dumps(empty_password_dict))
     # then
-    print(response.content)
     assert response.status_code == 400
+
+
+def test_password_validation_8_chars_good_password_should_return_status_201():
+    # given
+    good_password_dict = {"content": "aB1@cD2#"}
+    # when
+    response = client.post("/", data=json.dumps(good_password_dict))
+    # then
+    assert response.status_code == 201
