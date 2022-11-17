@@ -31,8 +31,6 @@ test webapp:
     except:
         - tags
     image: python:3.11.0-slim
-#    services: # start a real database for your service like postgres
-#        - postgres:11.3-alpine
     script:
         - coverage run -m pytest
         - coverage report
