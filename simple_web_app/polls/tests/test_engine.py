@@ -1,6 +1,7 @@
 import unittest
 from ..math_engine import sum_operation
 
+
 class MathEngineTestCase(unittest.TestCase):
     def test_add_1_and_2_should_return_3(self):
         # given
