@@ -1,5 +1,6 @@
 from fastapi.testclient import TestClient
 from main import app
+import json
 
 # given
 client = TestClient(app)
@@ -19,10 +20,11 @@ def test_read_main_response():
     assert response.json() == {"description": "Please submit a post with a password for validation on validate_password view"}
 
 
-def test_password_validation_misspelled_key_password_should_return_status_422():
+def test_password_validation_misspelled_key_should_return_status_422():
     # given
-    misspelled_key_password_dict = {"passwrd": ""}
+    misspelled_key_password_dict = {"contnt": ""}
     # when
-    response = client.post("/", data=misspelled_key_password_dict)
+    response = client.post("/", data=json.dumps(misspelled_key_password_dict))
     # then
     assert response.status_code == 422
+

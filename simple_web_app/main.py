@@ -1,4 +1,13 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
+
+
+class PasswordSchema(BaseModel):
+    content: str
+
+
+class ValidationResponse(BaseModel):
+    messages: list[str]
 
 
 app = FastAPI()
@@ -10,8 +19,8 @@ def read_root():
     return {"description": "Please submit a post with a password for validation on validate_password view"}
 
 
-@app.post("/")
-def validate_password(password: str):
+@app.post("/", response_model=ValidationResponse, status_code=201)
+def validate_password(password: PasswordSchema):
     """
     # Please, submit a post with the password to validate
     ## Passwords must comply to:
@@ -26,4 +35,5 @@ def validate_password(password: str):
     :param password: this is the password to be validated<br>
     :return: validation result in terms of OK, or VALIDATION ERROR<br>
     """
-    return {"Hello": password}
+    response = ValidationResponse(messages=[password.content])
+    return response
