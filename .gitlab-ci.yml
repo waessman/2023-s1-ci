@@ -13,7 +13,7 @@ lint flake8:
   script:
     - flake8 .
   before_script:
-    - pip install -r requirements.txt
+    - pip install -r requirements-dev.txt
     - cd simple_web_app
 
 build webapp:
@@ -34,13 +34,12 @@ test webapp:
 #    services: # start a real database for your service like postgres
 #        - postgres:11.3-alpine
     script:
-        - coverage run --include='./*' manage.py test
+        - coverage run -m pytest
         - coverage report
         - coverage xml
     before_script:
-      - pip install -r requirements.txt
+      - pip install -r requirements-dev.txt
       - cd simple_web_app
-      - export DEBUG=True
     coverage: '/(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
     artifacts:
         paths:
