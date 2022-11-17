@@ -14,8 +14,8 @@ def test_7_chars_str_should_raise_http_400_exception():
 
 
 def test_8_chars_str_should_validate():
-    assert None == LengthValidator(content="12345678").validate()
+    assert None is LengthValidator(content="12345678").validate()
 
 
 def test_9_chars_str_should_validate():
-    assert None == LengthValidator(content="123456789").validate()
+    assert None is LengthValidator(content="123456789").validate()

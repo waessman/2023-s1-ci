@@ -21,6 +21,6 @@ class DigitValidator:
 
     def validate(self):
         if self.digit_set.isdisjoint(self.content_set):
-            msg = f"Passwords must have at least 1 digit!"
+            msg = "Passwords must have at least 1 digit!"
             raise NoDigitException(detail=msg)
         return None

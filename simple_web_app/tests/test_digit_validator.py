@@ -4,15 +4,15 @@ from simple_web_app.exceptions import NoDigitException
 
 
 def test_1_digit_str_should_validate():
-    assert None == DigitValidator(content="1").validate()
+    assert None is DigitValidator(content="1").validate()
 
 
 def test_1_digit_and_1_letter_str_should_validate():
-    assert None == DigitValidator(content="1a").validate()
+    assert None is DigitValidator(content="1a").validate()
 
 
 def test_1_letter_and_1_digit_str_should_validate():
-    assert None == DigitValidator(content="b1").validate()
+    assert None is DigitValidator(content="b1").validate()
 
 
 def test_1_letter_str_should_raise_http_400_exception():
