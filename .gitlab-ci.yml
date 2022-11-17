@@ -17,11 +17,14 @@ build webapp:
     stage: build
     except:
         - tags
-    image: docker:stable
-    services:
-        - docker:dind
+    image: python:3.11.0-slim
     script:
-        - docker build -t $docker_hub_login/simple_web_app:$CI_COMMIT_SHA .
+        - python3 manage.py check
+        - python3 manage.py makemigrations --check
+    before_script:
+        - pip install -r requirements.txt
+        - cd simple_web_app
+        - export DEBUG=True
 
 test webapp:
     stage: test
@@ -56,4 +59,5 @@ release webapp:
         - docker:dind
     script:
         - docker login -u=$docker_hub_login -p=$docker_hub_token
+        - docker build -t $docker_hub_login/simple_web_app:$CI_COMMIT_SHA .
         - docker push $docker_hub_login/simple_web_app:$CI_COMMIT_SHA
