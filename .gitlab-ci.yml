@@ -30,7 +30,9 @@ test webapp:
         - export DEBUG=True
     coverage: '/(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
     artifacts:
+        paths:
+            - /app/cobertura-coverage.xml
         reports:
             coverage_report:
                 coverage_format: cobertura
-                path: coverage.xml
+                path: /app/coverage.xml
