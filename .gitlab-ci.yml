@@ -1,5 +1,6 @@
 stages:
     - build
+    - test
 
 build webapp:
     stage: build
@@ -12,3 +13,24 @@ build webapp:
         - docker login -u=$docker_hub_login -p=$docker_hub_token
         - docker build -t $docker_hub_login/simple_web_app:$CI_COMMIT_SHA .
         - docker push $docker_hub_login/simple_web_app:$CI_COMMIT_SHA
+
+test webapp:
+    stage: test
+    except:
+        - tags
+    image: $docker_hub_login/simple_web_app:$CI_COMMIT_SHA
+#    services: # start a real database for your service like postgres
+#        - postgres:11.3-alpine
+    script:
+        - cd /app
+        - coverage run --include='./*' manage.py test
+        - coverage report
+        - coverage xml
+    before_script:
+        - export DEBUG=True
+    coverage: '/(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
+    artifacts:
+        reports:
+            coverage_report:
+                coverage_format: cobertura
+                path: /app/coverage.xml
