@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from models import PasswordSchema, ValidationResponse
+from models import PasswordSchema, ValidationResponse, PasswordValidator
 
 
 app = FastAPI()
@@ -27,5 +27,6 @@ def validate_password(password: PasswordSchema):
     :param password: this is the password to be validated<br>
     :return: validation result in terms of OK, or VALIDATION ERROR<br>
     """
-    response = ValidationResponse(message=password.content)
-    return response
+    validator = PasswordValidator(content=password.content)
+    result = validator.password_validate()
+    return result
