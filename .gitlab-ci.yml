@@ -1,7 +1,20 @@
+variables:
+  DOCKER_DRIVER: overlay2
+
 stages:
+    - linting
     - build
     - test
-    - linting
+    - release
+
+lint flake8:
+  stage: linting
+  image: python:3.11.0-slim
+  script:
+    - flake8 .
+  before_script:
+    - pip install -r requirements.txt
+    - cd simple_web_app
 
 build webapp:
     stage: build
@@ -11,24 +24,23 @@ build webapp:
     services:
         - docker:dind
     script:
-        - docker login -u=$docker_hub_login -p=$docker_hub_token
         - docker build -t $docker_hub_login/simple_web_app:$CI_COMMIT_SHA .
-        - docker push $docker_hub_login/simple_web_app:$CI_COMMIT_SHA
 
 test webapp:
     stage: test
     except:
         - tags
-    image: $docker_hub_login/simple_web_app:$CI_COMMIT_SHA
+    image: python:3.11.0-slim
 #    services: # start a real database for your service like postgres
 #        - postgres:11.3-alpine
     script:
-        - cd /app
         - coverage run --include='./*' manage.py test
         - coverage report
         - coverage xml
     before_script:
-        - export DEBUG=True
+      - pip install -r requirements.txt
+      - cd simple_web_app
+      - export DEBUG=True
     coverage: '/(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
     artifacts:
         paths:
@@ -38,9 +50,16 @@ test webapp:
                 coverage_format: cobertura
                 path: coverage.xml
 
-lint flake8:
-  stage: linting
-  image: $docker_hub_login/simple_web_app:$CI_COMMIT_SHA
-  script:
-    - cd /app
-    - flake8 .
+release webapp:
+    stage: release
+    except:
+        - tags
+    image: docker:stable
+    services:
+        - docker:dind
+    script:
+        - docker tag $docker_hub_login/simple_web_app:$CI_COMMIT_SHA $docker_hub_login/simple_web_app:latest
+        - docker push $docker_hub_login/simple_web_app:$CI_COMMIT_SHA
+        - docker push $docker_hub_login/simple_web_app:latest
+    before_script:
+        - docker login -u=$docker_hub_login -p=$docker_hub_token
