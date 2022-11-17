@@ -27,16 +27,17 @@ test webapp:
     stage: test
     except:
         - tags
-    image: $docker_hub_login/simple_web_app:$CI_COMMIT_SHA
+    image: python:3.11.0-slim
 #    services: # start a real database for your service like postgres
 #        - postgres:11.3-alpine
     script:
-        - cd /app
         - coverage run --include='./*' manage.py test
         - coverage report
         - coverage xml
     before_script:
-        - export DEBUG=True
+      - pip install -r requirements.txt
+      - cd simple_web_app
+      - export DEBUG=True
     coverage: '/(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
     artifacts:
         paths:
