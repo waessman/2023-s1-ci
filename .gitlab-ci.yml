@@ -58,6 +58,8 @@ release webapp:
     services:
         - docker:dind
     script:
+        - docker tag $docker_hub_login/simple_web_app:$CI_COMMIT_SHA $docker_hub_login/simple_web_app:latest
         - docker push $docker_hub_login/simple_web_app:$CI_COMMIT_SHA
+        - docker push $docker_hub_login/simple_web_app:latest
     before_script:
         - docker login -u=$docker_hub_login -p=$docker_hub_token
