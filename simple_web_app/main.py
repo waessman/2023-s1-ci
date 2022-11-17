@@ -27,5 +27,5 @@ def validate_password(password: PasswordSchema):
     :param password: this is the password to be validated<br>
     :return: validation result in terms of OK, or VALIDATION ERROR<br>
     """
-    response = ValidationResponse(messages=[password.content])
+    response = ValidationResponse(message=password.content)
     return response

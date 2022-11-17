@@ -6,4 +6,4 @@ class PasswordSchema(BaseModel):
 
 
 class ValidationResponse(BaseModel):
-    messages: list[str]
+    message: str
