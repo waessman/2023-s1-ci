@@ -28,3 +28,12 @@ def test_password_validation_misspelled_key_should_return_status_422():
     # then
     assert response.status_code == 422
 
+
+def test_password_validation_empty_str_password_should_return_status_400():
+    # given
+    empty_password_dict = {"content": ""}
+    # when
+    response = client.post("/", data=json.dumps(empty_password_dict))
+    # then
+    print(response.content)
+    assert response.status_code == 400
