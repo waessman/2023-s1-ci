@@ -10,3 +10,10 @@ def test_read_main_status():
     response = client.get("/")
     # then
     assert response.status_code == 200
+
+
+def test_read_main_response():
+    # when
+    response = client.get("/")
+    # then
+    assert response.json() == {"description": "Please submit a post with a password for validation on validate_password view"}
