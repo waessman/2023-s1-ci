@@ -1,5 +1,6 @@
 from exceptions import MinimumLengthException
 
+
 class LengthValidator:
     def __init__(self, content: str):
         self.minimum_length = 8
