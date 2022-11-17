@@ -2,6 +2,7 @@ stages:
     - linting
     - build
     - test
+    - release
 
 lint flake8:
   stage: linting
@@ -20,9 +21,7 @@ build webapp:
     services:
         - docker:dind
     script:
-        - docker login -u=$docker_hub_login -p=$docker_hub_token
         - docker build -t $docker_hub_login/simple_web_app:$CI_COMMIT_SHA .
-        - docker push $docker_hub_login/simple_web_app:$CI_COMMIT_SHA
 
 test webapp:
     stage: test
@@ -47,3 +46,13 @@ test webapp:
                 coverage_format: cobertura
                 path: coverage.xml
 
+release webapp:
+    stage: release
+    except:
+        - tags
+    image: docker:stable
+    services:
+        - docker:dind
+    script:
+        - docker login -u=$docker_hub_login -p=$docker_hub_token
+        - docker push $docker_hub_login/simple_web_app:$CI_COMMIT_SHA
