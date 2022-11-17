@@ -1,4 +1,4 @@
-from exceptions import MinimumLengthException
+from simple_web_app.exceptions import MinimumLengthException
 
 
 class LengthValidator:
