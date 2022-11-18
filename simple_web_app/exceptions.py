@@ -16,3 +16,7 @@ class NoDigitException(InvalidPasswordException):
 
 class NoLowerCaseException(InvalidPasswordException):
     pass
+
+
+class EspecialCharacterException(InvalidPasswordException):
+    pass

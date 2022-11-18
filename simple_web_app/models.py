@@ -1,5 +1,11 @@
 from pydantic import BaseModel
-from string_validators import Validator, LengthValidator, DigitValidator, LowerCaseValidator
+from string_validators import (
+    Validator,
+    LengthValidator,
+    DigitValidator,
+    LowerCaseValidator,
+    EspecialCharacterValidator,
+)
 
 
 class PasswordSchema(BaseModel):
@@ -19,6 +25,7 @@ class PasswordValidator(BaseModel):
             LengthValidator(),
             DigitValidator(),
             LowerCaseValidator(),
+            EspecialCharacterValidator(),
         ]
         return validators
 
