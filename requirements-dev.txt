@@ -92,6 +92,9 @@ exceptiongroup==1.0.4 ; python_version < "3.11" and python_version >= "3.10" \
 fastapi==0.87.0 ; python_version >= "3.10" \
     --hash=sha256:07032e53df9a57165047b4f38731c38bdcc3be5493220471015e2b4b51b486a4 \
     --hash=sha256:254453a2e22f64e2a1b4e1d8baf67d239e55b6c8165c079d25746a5220c81bb4
+flake8-bugbear==22.10.27 ; python_version >= "3.10" \
+    --hash=sha256:6ad0ab754507319060695e2f2be80e6d8977cfcea082293089a9226276bd825d \
+    --hash=sha256:a6708608965c9e0de5fff13904fed82e0ba21ac929fe4896459226a797e11cd5
 flake8==5.0.4 ; python_version >= "3.10" \
     --hash=sha256:6fbe320aad8d6b95cec8b8e47bc933004678dc63095be98528b7bdd2a9f510db \
     --hash=sha256:7a1cf6b73744f5806ab95e526f6f0d8c01c66d7bbe349562d22dfca20610b248

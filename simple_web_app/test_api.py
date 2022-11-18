@@ -17,7 +17,10 @@ def test_read_main_response():
     # when
     response = client.get("/")
     # then
-    assert response.json() == {"description": "Please submit a post with a password for validation on validate_password view"}
+    assert response.json() == {
+        "description": "Please submit a post with a password "
+        "for validation on validate_password view"
+    }
 
 
 def test_password_validation_misspelled_key_should_return_status_422():
