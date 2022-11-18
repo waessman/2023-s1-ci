@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from string_validators import LengthValidator, DigitValidator
+from string_validators import Validator, LengthValidator, DigitValidator
 
 
 class PasswordSchema(BaseModel):
@@ -14,8 +14,16 @@ class PasswordValidator(BaseModel):
     content: str
     response: ValidationResponse | None = None
 
+    def get_validators(self):
+        validators = [
+            LengthValidator(),
+            DigitValidator(),
+        ]
+        return validators
+
     def password_validate(self) -> ValidationResponse:
-        LengthValidator(content=self.content).validate()
-        DigitValidator(content=self.content).validate()
+        validators: list[Validator] = self.get_validators()
+        for validator in validators:
+            validator.validate(self.content)
         self.response = ValidationResponse(message="OK")
         return self.response

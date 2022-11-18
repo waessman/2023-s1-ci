@@ -1,26 +1,32 @@
+from abc import ABC, abstractmethod
 from exceptions import MinimumLengthException, NoDigitException
 
 
-class LengthValidator:
-    def __init__(self, content: str):
-        self.minimum_length = 8
-        self.content = content
+class Validator(ABC):
 
-    def validate(self):
-        if self.minimum_length > len(self.content):
+    @abstractmethod
+    def validate(self, content):
+        pass
+
+
+class LengthValidator(Validator):
+    def __init__(self):
+        self.minimum_length = 8
+
+    def validate(self, content):
+        if self.minimum_length > len(content):
             msg = f"Passwords must have at least {self.minimum_length} characters!"
             raise MinimumLengthException(detail=msg)
         return None
 
 
-class DigitValidator:
-    def __init__(self, content: str):
-        self.content = content
+class DigitValidator(Validator):
+    def __init__(self):
         self.digit_set = {digit for digit in "0123456789"}
-        self.content_set = {character for character in content}
 
-    def validate(self):
-        if self.digit_set.isdisjoint(self.content_set):
+    def validate(self, content):
+        content_set = {character for character in content}
+        if self.digit_set.isdisjoint(content_set):
             msg = "Passwords must have at least 1 digit!"
             raise NoDigitException(detail=msg)
         return None
