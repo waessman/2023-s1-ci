@@ -18,8 +18,9 @@ _requirements.txt_ to just the web app dependencies.
 6. Especial characters can not be / ^ ~<br>
 
 # Tasks
+## 0. Fork the project on gitlab; 
 ## 1. Verify that tests don't cover your specification and code proper tests;
-## 2. Fix any bugs that you find.
+## 2. Fix any bugs that you find;
 ## 3. The ci pipeline seems messed up, fix it.
 
 [![asciicast](https://asciinema.org/a/538713.svg)](https://asciinema.org/a/538713)
