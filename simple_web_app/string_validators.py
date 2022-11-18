@@ -6,8 +6,12 @@ from exceptions import MinimumLengthException, NoDigitException, NoLowerCaseExce
 class Validator(ABC):
 
     @abstractmethod
-    def validate(self, content):
-        pass
+    def validate(self, content) -> None:
+        """
+        This is the interface of the validation interface.
+        :param content: the text to be validated
+        :return: None if the text is valid or raise an Exception otherwise.
+        """
 
 
 class LengthValidator(Validator):
