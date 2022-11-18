@@ -1,5 +1,6 @@
+from string import ascii_lowercase
 from abc import ABC, abstractmethod
-from exceptions import MinimumLengthException, NoDigitException
+from exceptions import MinimumLengthException, NoDigitException, NoLowerCaseException
 
 
 class Validator(ABC):
@@ -29,4 +30,16 @@ class DigitValidator(Validator):
         if self.digit_set.isdisjoint(content_set):
             msg = "Passwords must have at least 1 digit!"
             raise NoDigitException(detail=msg)
+        return None
+
+
+class LowerCaseValidator(Validator):
+    def __init__(self):
+        self.lower_case_set = {character for character in ascii_lowercase}
+
+    def validate(self, content):
+        content_set = {character for character in content}
+        if self.lower_case_set.isdisjoint(content_set):
+            msg = "Passwords must have at least 1 lower case letter!"
+            raise NoLowerCaseException(detail=msg)
         return None
