@@ -2,7 +2,7 @@
 
 ## Problem Statement
 This repository implements a HTTP API to validate a password text according to
-some criteria. <br>
+some criteria. But it is incomplete and has bugs, it is your job to fix it and complete the code.<br>
 
 It was developed using **poetry** package manager, but we have included the 
 _requirements.txt_ and _requirements-dev.txt_ to help who doesn't. Refer to 
@@ -16,6 +16,11 @@ _requirements.txt_ to just the web app dependencies.
 4. At least 1 upper case letter<br>
 5. At least 1 lower case letter<br>
 6. Especial characters can not be / ^ ~<br>
+
+# Tasks
+## 1. Verify that tests don't cover your specification and code proper tests;
+## 2. Fix any bugs that you find.
+## 3. The ci pipeline seems messed up, fix it.
 
 [![asciicast](https://asciinema.org/a/538713.svg)](https://asciinema.org/a/538713)
 
