@@ -1,6 +1,6 @@
 import pytest
-from simple_web_app.string_validators import LengthValidator
-from simple_web_app.exceptions import MinimumLengthException
+from string_validators import LengthValidator
+from exceptions import MinimumLengthException
 
 
 def test_empty_str_should_raise_http_400_exception():

@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from simple_web_app.string_validators import LengthValidator
+from string_validators import LengthValidator
 
 
 class PasswordSchema(BaseModel):

@@ -1,4 +1,4 @@
-from simple_web_app.exceptions import MinimumLengthException, NoDigitException
+from exceptions import MinimumLengthException, NoDigitException
 
 
 class LengthValidator:
