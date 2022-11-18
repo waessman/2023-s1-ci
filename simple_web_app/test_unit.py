@@ -2,7 +2,7 @@ import pytest
 from models import PasswordValidator, ValidationResponse
 
 
-def test_empty_str_should_raise_http_400_exception():
+def test_empty_password_should_raise_http_400_exception():
     # given
     validator = PasswordValidator(content="")
     with pytest.raises(Exception):  # then
@@ -10,7 +10,7 @@ def test_empty_str_should_raise_http_400_exception():
         validator.password_validate()
 
 
-def test_7_chars_str_should_raise_http_400_exception():
+def test_7_chars_password_should_raise_http_400_exception():
     # given
     validator = PasswordValidator(content="1@Ab1@A")
     with pytest.raises(Exception):  # then
@@ -18,7 +18,7 @@ def test_7_chars_str_should_raise_http_400_exception():
         validator.password_validate()
 
 
-def test_8_chars_str_should_validate():
+def test_8_chars_password_should_validate():
     # given
     expected_response = ValidationResponse(message="OK")
     # when
@@ -27,7 +27,7 @@ def test_8_chars_str_should_validate():
     assert expected_response == actual_response
 
 
-def test_9_chars_str_should_validate():
+def test_9_chars_password_should_validate():
     # given
     expected_response = ValidationResponse(message="OK")
     # when
