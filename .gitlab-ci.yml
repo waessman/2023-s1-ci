@@ -14,7 +14,6 @@ lint flake8:
     - flake8 .
   before_script:
     - pip install -r requirements-dev.txt
-    - cd simple_web_app
 
 build webapp:
     stage: build
@@ -31,8 +30,6 @@ test webapp:
     except:
         - tags
     image: python:3.11.0-slim
-#    services: # start a real database for your service like postgres
-#        - postgres:11.3-alpine
     script:
         - coverage run -m pytest
         - coverage report
