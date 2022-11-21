@@ -10,7 +10,7 @@ stages:
 
 lint flake8:
   stage: lint
-  image: python:3.11.0-slim
+  image: python:3.7.5-slim
   script:
     - flake8 .
   before_script:
@@ -18,7 +18,7 @@ lint flake8:
 
 lint black:
   stage: lint
-  image: python:3.11.0-slim
+  image: python:3.7.5-slim
   script:
     - black --check .
   before_script:
@@ -38,7 +38,7 @@ test webapp:
     stage: test
     except:
         - tags
-    image: python:3.11.0-slim
+    image: python:3.7.5-slim
     script:
         - coverage run -m pytest
         - coverage report
