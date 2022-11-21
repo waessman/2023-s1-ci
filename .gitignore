@@ -307,3 +307,6 @@ fabric.properties
 
 # django static folder
 static/
+
+# deta state file
+*/.deta/state

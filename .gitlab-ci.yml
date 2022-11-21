@@ -2,16 +2,25 @@ variables:
   DOCKER_DRIVER: overlay2
 
 stages:
-    - linting
+    - lint
     - build
     - test
     - release
+    - deploy
 
 lint flake8:
-  stage: linting
-  image: python:3.11.0-slim
+  stage: lint
+  image: python:3.7.5-slim
   script:
     - flake8 .
+  before_script:
+    - pip install -r requirements-dev.txt
+
+lint black:
+  stage: lint
+  image: python:3.7.5-slim
+  script:
+    - black --check .
   before_script:
     - pip install -r requirements-dev.txt
 
@@ -29,7 +38,7 @@ test webapp:
     stage: test
     except:
         - tags
-    image: python:3.11.0-slim
+    image: python:3.7.5-slim
     script:
         - coverage run -m pytest
         - coverage report
@@ -59,3 +68,18 @@ release webapp:
         - docker push $docker_hub_login/simple_web_app:latest
     before_script:
         - docker login -u=$docker_hub_login -p=$docker_hub_token
+
+deploy production:
+    stage: deploy
+    image: curlimages/curl:7.86.0 sh
+    when: manual
+    before_script:
+        - curl -fsSL https://get.deta.dev/cli.sh | sh
+        - cd simple_web_app
+    only:
+        - main
+    script:
+        - ~/.deta/bin/deta deploy
+    environment:
+        name: production
+        url: https://p3atk3.deta.dev/

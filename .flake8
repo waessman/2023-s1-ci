@@ -1,5 +1,7 @@
 [flake8]
-ignore = E501
+max-line-length = 88
+extend-select = B950
+extend-ignore = E203, E501
 exclude = migrations
           __pycache__
           manage.py

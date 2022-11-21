@@ -7,8 +7,11 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    """"This is the default view"""
-    return {"description": "Please submit a post with a password for validation on validate_password view"}
+    """ "This is the default view"""
+    return {
+        "description": "Please submit a post with a password "
+        "for validation on validate_password view"
+    }
 
 
 @app.post("/", response_model=ValidationResponse, status_code=201)

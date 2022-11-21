@@ -9,7 +9,6 @@ from exceptions import (
 
 
 class Validator(ABC):
-
     @abstractmethod
     def validate(self, content) -> None:
         """
