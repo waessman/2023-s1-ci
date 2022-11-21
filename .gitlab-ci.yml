@@ -24,6 +24,14 @@ lint black:
   before_script:
     - pip install -r requirements-dev.txt
 
+lint prospector:
+  stage: lint
+  image: python:3.7.5-slim
+  script:
+    - prospector --no-autodetect
+  before_script:
+    - pip install -r requirements-dev.txt
+
 build webapp:
     stage: build
     except:
