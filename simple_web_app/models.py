@@ -1,3 +1,4 @@
+from typing import Optional, List
 from pydantic import BaseModel
 from string_validators import (
     Validator,
@@ -18,9 +19,9 @@ class ValidationResponse(BaseModel):
 
 class PasswordValidator(BaseModel):
     content: str
-    response: ValidationResponse | None = None
+    response: Optional[ValidationResponse] = None
 
-    def get_validators(self) -> list[Validator]:
+    def get_validators(self) -> List[Validator]:
         validators = [
             LengthValidator(),
             DigitValidator(),
