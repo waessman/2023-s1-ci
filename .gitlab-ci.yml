@@ -71,7 +71,7 @@ release webapp:
 
 deploy production:
     stage: deploy
-    image: curlimages/curl:7.86.0 sh
+    image: curlimages/curl:7.86.0
     when: manual
     before_script:
         - curl -fsSL https://get.deta.dev/cli.sh | sh
