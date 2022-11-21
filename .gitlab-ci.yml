@@ -14,7 +14,7 @@ lint flake8:
   script:
     - flake8 .
   before_script:
-    - pip install -r requirements-dev.txt
+    - pip install --no-cache-dir --upgrade -r requirements-dev.txt
 
 lint black:
   stage: lint
@@ -22,7 +22,7 @@ lint black:
   script:
     - black --check .
   before_script:
-    - pip install -r requirements-dev.txt
+    - pip install --no-cache-dir --upgrade -r requirements-dev.txt
 
 lint prospector:
   stage: lint
@@ -60,7 +60,7 @@ test webapp:
         - coverage report
         - coverage xml
     before_script:
-      - pip install -r requirements-dev.txt
+      - pip install --no-cache-dir --upgrade -r requirements-dev.txt
       - cd simple_web_app
     coverage: '/(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
     artifacts:
