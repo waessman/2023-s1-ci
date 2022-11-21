@@ -30,7 +30,15 @@ lint prospector:
   script:
     - prospector --no-autodetect
   before_script:
-    - pip install -r requirements-dev.txt
+    - pip install --no-cache-dir --upgrade -r requirements-dev.txt
+
+lint pip-audit:
+  stage: lint
+  image: python:3.7.5-slim
+  script:
+    - pip-audit
+  before_script:
+    - pip install --no-cache-dir --upgrade -r requirements-dev.txt
 
 build webapp:
     stage: build
