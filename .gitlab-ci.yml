@@ -2,16 +2,24 @@ variables:
   DOCKER_DRIVER: overlay2
 
 stages:
-    - linting
+    - lint
     - build
     - test
     - release
 
 lint flake8:
-  stage: linting
+  stage: lint
   image: python:3.11.0-slim
   script:
     - flake8 .
+  before_script:
+    - pip install -r requirements-dev.txt
+
+lint black:
+  stage: lint
+  image: python:3.11.0-slim
+  script:
+    - black --check .
   before_script:
     - pip install -r requirements-dev.txt
 
