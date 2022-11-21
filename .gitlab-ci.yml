@@ -80,3 +80,6 @@ deploy production:
         - main
     script:
         - ~/.deta/bin/deta deploy
+    environment:
+        name: production
+        url: https://p3atk3.deta.dev/
