@@ -23,12 +23,13 @@ _requirements.txt_ to just the web app dependencies.
 ## 2. Fix any bugs that you find;
 ## 3. The ci pipeline seems messed up, fix it.
 
-[![asciicast](https://asciinema.org/a/538713.svg)](https://asciinema.org/a/538713)
+# Installing the development environment
 
+[![asciicast](https://asciinema.org/a/538713.svg)](https://asciinema.org/a/538713)
 ## Development environment dependencies
 | Dependencies      | Tested Version | Minimum Version | Url                                                            |
 |-------------------|----------------|-----------------|----------------------------------------------------------------|
-| Python            | 3.11           | 3.10            | [link](https://www.python.org/downloads/release/python-3110/)  |
+| Python            | 3.11           | 3.7.5           | [link](https://www.python.org/downloads/release/python-3110/)  |
 | Poetry (optional) | 1.2.0          | 1.0.0           | [link](https://python-poetry.org/)                             |
 
 ### clone the project
@@ -36,32 +37,36 @@ _requirements.txt_ to just the web app dependencies.
 $ git clone ssh://git@gitlab.ic.unicamp.br:2222/ra220102/mc426-2022-s2-ci.git
 ````
 
-### when using poetry
+### when using poetry just install dependencies and enter the virtual environment
 ````shell
 $ cd mc426-2022-s2-ci
 $ poetry install
 $ poetry shell
 ````
 
-### when **NOT** using poetry
+### when **NOT** using poetry install dependencies from the inner requirements.txt
+It is advisable to use a virtual environment
 ````shell
-$ cd mc426-2022-s2-ci
-$ pip install -r requirements-dev.txt
+$ cd mc426-2022-s2-ci/simple_web_app
+$ pip install -r requirements.txt
 ````
 
 ## Running the web app
 ### running from code
 ````shell
-$ cd simple_web_app
+$ cd mc426-2022-s2-ci/simple_web_app
 $ uvicorn main:app --reload
 ````
 
 ### running from docker
 ````shell
-$ docker run --rm -p 8000:80 andreportela/simple_web_app
+$ cd mc426-2022-s2-ci
+$ docker build -t simple_web_app .
+$ docker run --rm -p 8000:80 simple_web_app
 ````
 
 ## Running the tests
 ````shell
+$ cd mc426-2022-s2-ci
 $ pytest
 ````
