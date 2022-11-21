@@ -26,40 +26,36 @@ class LengthValidator(Validator):
         if self.minimum_length > len(content):
             msg = f"Passwords must have at least {self.minimum_length} characters!"
             raise MinimumLengthException(detail=msg)
-        return None
 
 
 class DigitValidator(Validator):
     def __init__(self):
-        self.digit_set = {digit for digit in "0123456789"}
+        self.digit_set = set("0123456789")
 
     def validate(self, content):
-        content_set = {character for character in content}
+        content_set = set(content)
         if self.digit_set.isdisjoint(content_set):
             msg = "Passwords must have at least 1 digit!"
             raise NoDigitException(detail=msg)
-        return None
 
 
 class LowerCaseValidator(Validator):
     def __init__(self):
-        self.lower_case_set = {character for character in ascii_lowercase}
+        self.lower_case_set = set(ascii_lowercase)
 
     def validate(self, content):
-        content_set = {character for character in content}
+        content_set = set(content)
         if self.lower_case_set.isdisjoint(content_set):
             msg = "Passwords must have at least 1 lower case letter!"
             raise NoLowerCaseException(detail=msg)
-        return None
 
 
 class EspecialCharacterValidator(Validator):
     def __init__(self):
-        self.especial_set = {character for character in punctuation}
+        self.especial_set = set(punctuation)
 
     def validate(self, content):
-        content_set = {character for character in content}
+        content_set = set(content)
         if self.especial_set.isdisjoint(content_set):
             msg = "Passwords must have at least 1 especial character!"
             raise EspecialCharacterException(detail=msg)
-        return None
