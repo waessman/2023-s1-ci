@@ -17,8 +17,7 @@ def test_read_main_response():
     response = client.get("/")
     # then
     assert response.json() == {
-        "description": "Please submit a post with a password "
-        "for validation on validate_password view"
+        "description": "This is just a dummy response. Your API is up and running!"
     }
 
 
