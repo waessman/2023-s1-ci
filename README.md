@@ -58,9 +58,32 @@ $ pytest
 ````
 
 ## Apêndice
-### Criar uma conta no docker hub https://hub.docker.com/
+### Publicar imagens docker
+0. Criar uma conta no docker hub https://hub.docker.com/
+1. Criar access token no docker hub
+2. Criar variável mascarada **docker_hub_token** com este access_token no gitlab
+3. Criar variável **docker_hub_login** com o seu espaço no docker hub no gitlab
+4. Rodar os stages de build e release do pipeline
 
-### Criar uma conta no deta https://www.deta.sh/
+### Fazer deploy da aplicação no PaaS chamado deta
+0. Criar uma conta no deta https://www.deta.sh/
+1. Instalar cliente do deta e configurar projeto
+````shell
+$ curl -fsSL https://get.deta.dev/cli.sh | sh   # instalar cliente deta
+$ source ~/.bashrc                              # disponibilizar comando
+$ deta login                                    # logar na conta já criada
+$ cd mc426-2022-s2-ci                           # entrar na raiz do projeto
+$ deta new —python simple_web_app               # criar projeto no cloud deta
+$ cd simple_web_app                             # entrar na pasta com código python
+$ deta deploy                                   # realizar deploy
+$ deta visor enable                             # habilitar logs no cloud deta
+````
+2. Gerar access token em settings no site deta
+3. Criar variável mascarada **DETA_ACCESS_TOKEN** no gitlab
+4. Commitar modificações no arquivo simple_web_app/.deta/prog_info
+5. Criar variável **PRODUCTION_URL** no gitlab com a URL do serviço na deta
+6. Seguir o fluxo de gerência de configuração até a branch main
+7. Disparar o job de deploy manualmente ao final da pipeline na main
 
 ### rodando do docker
 ````shell
