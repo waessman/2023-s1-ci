@@ -10,7 +10,7 @@ stages:
 
 lint flake8:
   stage: lint
-  image: python:3.7.5-slim
+  image: python:3.11.0-slim
   script:
     - flake8 .
   before_script:
