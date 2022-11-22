@@ -18,5 +18,9 @@ class NoLowerCaseException(InvalidPasswordException):
     pass
 
 
+class NoUpperCaseException(InvalidPasswordException):
+    pass
+
+
 class EspecialCharacterException(InvalidPasswordException):
     pass

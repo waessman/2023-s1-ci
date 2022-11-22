@@ -5,6 +5,7 @@ from string_validators import (
     LengthValidator,
     DigitValidator,
     LowerCaseValidator,
+    UpperCaseValidator,
     EspecialCharacterValidator,
 )
 
@@ -26,6 +27,7 @@ class PasswordValidator(BaseModel):
             LengthValidator(),
             DigitValidator(),
             LowerCaseValidator(),
+            UpperCaseValidator(),
             EspecialCharacterValidator(),
         ]
         return validators
