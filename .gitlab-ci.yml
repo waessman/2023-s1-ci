@@ -10,7 +10,9 @@ stages:
 
 lint flake8:
   stage: lint
-  image: python:3.7.5-slim
+  image:
+    name: python:3.7.5-slim
+    pull_policy: if-not-present
   script:
     - flake8 .
   before_script:
@@ -18,7 +20,9 @@ lint flake8:
 
 lint black:
   stage: lint
-  image: python:3.7.5-slim
+  image:
+    name: python:3.7.5-slim
+    pull_policy: if-not-present
   script:
     - black --check .
   before_script:
@@ -26,7 +30,9 @@ lint black:
 
 lint prospector:
   stage: lint
-  image: python:3.7.5-slim
+  image:
+    name: python:3.7.5-slim
+    pull_policy: if-not-present
   script:
     - prospector --no-autodetect
   before_script:
@@ -34,7 +40,9 @@ lint prospector:
 
 lint pip-audit:
   stage: lint
-  image: python:3.7.5-slim
+  image:
+    name: python:3.7.5-slim
+    pull_policy: if-not-present
   script:
     - pip-audit
   before_script:
@@ -44,7 +52,9 @@ test webapp:
     stage: test
     except:
         - tags
-    image: python:3.7.5-slim
+    image:
+      name: python:3.7.5-slim
+      pull_policy: if-not-present
     script:
         - coverage run -m pytest
         - coverage report
@@ -61,23 +71,27 @@ test webapp:
                 coverage_format: cobertura
                 path: coverage.xml
 
-build webapp:
+.build webapp:
     stage: build
     except:
         - tags
-    image: docker:stable
+    image:
+      name: docker:stable
+      pull_policy: if-not-present
     services:
-        - docker:dind
+      - name: docker:dind
     script:
         - docker build -t $docker_hub_login/simple_web_app:$CI_COMMIT_SHA .
 
-release webapp:
+.release webapp:
     stage: release
     except:
         - tags
-    image: docker:stable
+    image:
+      name: docker:stable
+      pull_policy: if-not-present
     services:
-        - docker:dind
+      - name: docker:dind
     script:
         - docker tag $docker_hub_login/simple_web_app:$CI_COMMIT_SHA $docker_hub_login/simple_web_app:latest
         - docker push $docker_hub_login/simple_web_app:$CI_COMMIT_SHA
@@ -87,7 +101,9 @@ release webapp:
 
 deploy production:
     stage: deploy
-    image: curlimages/curl:7.86.0
+    image:
+      name: curlimages/curl:7.86.0
+      pull_policy: if-not-present
     when: manual
     before_script:
         - curl -fsSL https://get.deta.dev/cli.sh | sh

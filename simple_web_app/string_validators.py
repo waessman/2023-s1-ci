@@ -1,10 +1,11 @@
-from string import ascii_lowercase, punctuation
+from string import ascii_lowercase, punctuation, ascii_uppercase
 from abc import ABC, abstractmethod
 from exceptions import (
     MinimumLengthException,
     NoDigitException,
     NoLowerCaseException,
     EspecialCharacterException,
+    NoUpperCaseException,
 )
 
 
@@ -59,3 +60,14 @@ class EspecialCharacterValidator(Validator):
         if self.especial_set.isdisjoint(content_set):
             msg = "Passwords must have at least 1 especial character!"
             raise EspecialCharacterException(detail=msg)
+
+
+class UpperCaseValidator(Validator):
+    def __init__(self):
+        self.upper_case_set = set(ascii_uppercase)
+
+    def validate(self, content):
+        content_set = set(content)
+        if self.upper_case_set.isdisjoint(content_set):
+            msg = "Passwords must have at least 1 upper case letter!"
+            raise NoUpperCaseException(detail=msg)
