@@ -61,6 +61,7 @@ class EspecialCharacterValidator(Validator):
             msg = "Passwords must have at least 1 especial character!"
             raise EspecialCharacterException(detail=msg)
 
+
 class UpperCaseValidator(Validator):
     def __init__(self):
         self.upper_case_set = set(ascii_uppercase)
@@ -70,4 +71,3 @@ class UpperCaseValidator(Validator):
         if self.upper_case_set.isdisjoint(content_set):
             msg = "Passwords must have at least 1 upper case letter!"
             raise NoUpperCaseException(detail=msg)
-
