@@ -3,8 +3,8 @@ variables:
 
 stages:
     - lint
-    - build
     - test
+    - build
     - release
     - deploy
 
@@ -40,16 +40,6 @@ lint pip-audit:
   before_script:
     - pip install --no-cache-dir --upgrade -r requirements-dev.txt
 
-build webapp:
-    stage: build
-    except:
-        - tags
-    image: docker:stable
-    services:
-        - docker:dind
-    script:
-        - docker build -t $docker_hub_login/simple_web_app:$CI_COMMIT_SHA .
-
 test webapp:
     stage: test
     except:
@@ -70,6 +60,16 @@ test webapp:
             coverage_report:
                 coverage_format: cobertura
                 path: coverage.xml
+
+build webapp:
+    stage: build
+    except:
+        - tags
+    image: docker:stable
+    services:
+        - docker:dind
+    script:
+        - docker build -t $docker_hub_login/simple_web_app:$CI_COMMIT_SHA .
 
 release webapp:
     stage: release
@@ -99,3 +99,4 @@ deploy production:
     environment:
         name: production
         url: https://p3atk3.deta.dev/
+
