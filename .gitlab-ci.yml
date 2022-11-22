@@ -61,25 +61,23 @@ test webapp:
                 coverage_format: cobertura
                 path: coverage.xml
 
-build webapp:
+.build webapp:
     stage: build
     except:
         - tags
     image: docker:stable
     services:
       - name: docker:dind
-        command: ["--tls=false"]
     script:
         - docker build -t $docker_hub_login/simple_web_app:$CI_COMMIT_SHA .
 
-release webapp:
+.release webapp:
     stage: release
     except:
         - tags
     image: docker:stable
     services:
       - name: docker:dind
-        command: ["--tls=false"]
     script:
         - docker tag $docker_hub_login/simple_web_app:$CI_COMMIT_SHA $docker_hub_login/simple_web_app:latest
         - docker push $docker_hub_login/simple_web_app:$CI_COMMIT_SHA
