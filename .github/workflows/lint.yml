@@ -22,14 +22,14 @@ jobs:
     - run: poetry install --no-root
 
     - name: Analysing the code with flake8
-      run: flake8
+      run: poetry run flake8
 
     - name: Analysing the code with black
-      run: black --check .
+      run: poetry run black --check .
 
     - name: Analysing the code with prospector
-      run: prospector --no-autodetect
+      run: poetry run prospector --no-autodetect
 
     - name: Analysing the code with pip-audit
-      run: pip-audit
+      run: poetry run pip-audit
 
