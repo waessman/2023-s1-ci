@@ -1,12 +1,9 @@
-from string import ascii_lowercase, punctuation, ascii_uppercase
 from abc import ABC, abstractmethod
-from exceptions import (
-    MinimumLengthException,
-    NoDigitException,
-    NoLowerCaseException,
-    EspecialCharacterException,
-    NoUpperCaseException,
-)
+from string import ascii_lowercase, ascii_uppercase, punctuation
+
+from exceptions import (EspecialCharacterException, MinimumLengthException,
+                        NoDigitException, NoLowerCaseException,
+                        NoUpperCaseException)
 
 
 class Validator(ABC):
