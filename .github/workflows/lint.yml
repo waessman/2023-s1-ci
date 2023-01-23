@@ -42,9 +42,3 @@ jobs:
         poetry run coverage report
         poetry run coverage xml
 
-    - name: Publish coverage report
-      uses: orgoro/coverage@v3
-      with:
-        coverageFile: coverage.xml
-        token: ${{ secrets.GITHUB_TOKEN }}
-
