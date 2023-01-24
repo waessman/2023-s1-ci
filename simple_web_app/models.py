@@ -1,7 +1,8 @@
 from typing import List, Optional
 
 from pydantic import BaseModel
-from string_validators import (
+
+from .string_validators import (
     DigitValidator,
     EspecialCharacterValidator,
     LengthValidator,

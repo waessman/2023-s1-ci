@@ -1,5 +1,6 @@
 import pytest
-from models import PasswordValidator, ValidationResponse
+
+from .models import PasswordValidator, ValidationResponse
 
 
 def test_empty_password_should_raise_exception():

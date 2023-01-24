@@ -38,7 +38,7 @@ jobs:
 
     - name: Testing
       run: |
-        poetry run coverage run -m pytest
+        poetry run coverage run --source . --module pytest
         poetry run coverage report
         poetry run coverage xml
 
