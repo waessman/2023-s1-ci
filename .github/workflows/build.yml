@@ -39,7 +39,7 @@ jobs:
     - name: Testing
       run: |
         poetry run coverage run --source . --module pytest
-        poetry run coverage report
+        poetry run coverage report --show-missing
         poetry run coverage xml
 
     - name: Upload coverage to Codecov
