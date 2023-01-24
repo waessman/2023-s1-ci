@@ -1,0 +1,43 @@
+name: build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install poetry
+      run: pipx install poetry
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'poetry'
+    - run: poetry install --no-root
+
+    - name: Analysing the code with isort
+      run: poetry run isort --check --diff .
+
+    - name: Analysing the code with flake8
+      run: poetry run flake8
+
+    - name: Analysing the code with black
+      run: poetry run black --check --diff --color .
+
+    - name: Analysing the code with prospector
+      run: poetry run prospector --no-autodetect
+
+    - name: Analysing the code with pip-audit
+      run: poetry run pip-audit
+
+    - name: Testing
+      run: |
+        poetry run coverage run -m pytest
+        poetry run coverage report
+

@@ -1,6 +1,5 @@
 from fastapi import FastAPI
-from models import PasswordSchema, ValidationResponse, PasswordValidator
-
+from models import PasswordSchema, PasswordValidator, ValidationResponse
 
 app = FastAPI()
 
