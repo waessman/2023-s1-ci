@@ -3,11 +3,11 @@ from string import ascii_lowercase, ascii_uppercase, punctuation
 
 from .exceptions import (
     EspecialCharacterException,
+    ForbiddenSpecialCharacterException,
     MinimumLengthException,
     NoDigitException,
     NoLowerCaseException,
     NoUpperCaseException,
-    ForbiddenSpecialCharacterException,
 )
 
 
