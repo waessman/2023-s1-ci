@@ -38,7 +38,7 @@ $ git clone git@github.com:...XXXX.../2023-s1-ci.git
 
 ### Instalando as dependências
 ````shell
-$ cd mc426-2022-s2-ci/
+$ cd 2023-s1-ci/
 $ python3 -m venv .venv
 $ source .venv/bin/activate
 $ cd simple_web_app
