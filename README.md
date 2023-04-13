@@ -53,7 +53,7 @@ $ uvicorn main:app --reload
 
 ## Rodando os testes
 ````shell
-$ cd mc426-2022-s2-ci
+$ cd 2023-s1-ci
 $ pytest
 ````
 
@@ -72,7 +72,7 @@ $ pytest
 $ curl -fsSL https://get.deta.dev/cli.sh | sh   # instalar cliente deta
 $ source ~/.bashrc                              # disponibilizar comando
 $ deta login                                    # logar na conta já criada
-$ cd mc426-2022-s2-ci                           # entrar na raiz do projeto
+$ cd 2023-s1-ci                                 # entrar na raiz do projeto
 $ deta new —python simple_web_app               # criar projeto no cloud deta
 $ cd simple_web_app                             # entrar na pasta com código python
 $ deta deploy                                   # realizar deploy
@@ -87,7 +87,7 @@ $ deta visor enable                             # habilitar logs no cloud deta
 
 ### rodando do docker
 ````shell
-$ cd mc426-2022-s2-ci
+$ cd 2023-s1-ci
 $ docker build -t simple_web_app .
 $ docker run --rm -p 8000:80 simple_web_app
 ````
