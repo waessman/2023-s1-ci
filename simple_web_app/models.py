@@ -5,11 +5,11 @@ from pydantic import BaseModel
 from .string_validators import (
     DigitValidator,
     EspecialCharacterValidator,
+    ForbiddenEspecialCharacterValidator,
     LengthValidator,
     LowerCaseValidator,
     UpperCaseValidator,
     Validator,
-    ForbiddenEspecialCharacterValidator,
 )
 
 
