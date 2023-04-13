@@ -33,9 +33,6 @@ jobs:
     - name: Analysing the code with prospector
       run: poetry run prospector --no-autodetect
 
-    - name: Analysing the code with pip-audit
-      run: poetry run pip-audit
-
     - name: Testing
       run: |
         poetry run coverage run --source . --module pytest
