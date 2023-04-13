@@ -47,7 +47,7 @@ $ pip install -r requirements.txt
 
 ## Rodando a aplicação web
 ````shell
-$ cd mc426-2022-s2-ci/simple_web_app
+$ cd 2023-s1-ci/simple_web_app
 $ uvicorn main:app --reload
 ````
 
