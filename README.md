@@ -18,7 +18,7 @@ simple_web_api/requirements.txt<br>
 6. Caracteres especiais não podem ser / ^ ~<br>
 
 # Tarefas
-## 0. Faça o fork do projeto no gitlab;
+## 0. Faça o fork do projeto no github;
 ## 1. Faça o clone do seu fork na sua máquina;
 ## 2. Verifique que os testes não cobrem a especificação e adicione testes e implementação adequados;
 ## 3. Rode o seu pipeline com sucesso.
@@ -33,7 +33,7 @@ simple_web_api/requirements.txt<br>
 
 ### clone o seu fork
 ````shell
-$ git clone ssh://git@gitlab.ic.unicamp.br:2222/raxxxxxx/mc426-2022-s2-ci.git
+$ git clone git@github.com:...XXXX.../2023-s1-ci.git
 ````
 
 ### Instalando as dependências
@@ -61,8 +61,8 @@ $ pytest
 ### Publicar imagens docker
 0. Criar uma conta no docker hub https://hub.docker.com/
 1. Criar access token no docker hub
-2. Criar variável mascarada **docker_hub_token** com este access_token no gitlab
-3. Criar variável **docker_hub_login** com o seu espaço no docker hub no gitlab
+2. Criar variável mascarada **docker_hub_token** com este access_token no github
+3. Criar variável **docker_hub_login** com o seu espaço no docker hub no github
 4. Rodar os stages de build e release do pipeline
 
 ### Fazer deploy da aplicação no PaaS chamado deta
@@ -79,9 +79,9 @@ $ deta deploy                                   # realizar deploy
 $ deta visor enable                             # habilitar logs no cloud deta
 ````
 2. Gerar access token em settings no site deta
-3. Criar variável mascarada **DETA_ACCESS_TOKEN** no gitlab
+3. Criar variável mascarada **DETA_ACCESS_TOKEN** no github
 4. Commitar modificações no arquivo simple_web_app/.deta/prog_info
-5. Criar variável **PRODUCTION_URL** no gitlab com a URL do serviço na deta
+5. Criar variável **PRODUCTION_URL** no github com a URL do serviço na deta
 6. Seguir o fluxo de gerência de configuração até a branch main
 7. Disparar o job de deploy manualmente ao final da pipeline na main
 
