@@ -85,7 +85,7 @@ $ deta visor enable                             # habilitar logs no cloud deta
 6. Seguir o fluxo de gerência de configuração até a branch main
 7. Disparar o job de deploy manualmente ao final da pipeline na main
 
-### rodando do docker
+### rodando do docker :/
 ````shell
 $ cd 2023-s1-ci
 $ docker build -t simple_web_app .
