@@ -7,6 +7,7 @@ from .exceptions import (
     NoDigitException,
     NoLowerCaseException,
     NoUpperCaseException,
+    ForbiddenSpecialCharacterException,
 )
 
 
@@ -26,7 +27,7 @@ class LengthValidator(Validator):
 
     def validate(self, content):
         if self.minimum_length > len(content):
-            msg = f"Passwords must have at least {self.minimum_length} characters!"
+            msg = f"Passwords must have at least {self.minimum_length} characters {len(content)}!"
             raise MinimumLengthException(detail=msg)
 
 
@@ -72,3 +73,13 @@ class UpperCaseValidator(Validator):
         if self.upper_case_set.isdisjoint(content_set):
             msg = "Passwords must have at least 1 upper case letter!"
             raise NoUpperCaseException(detail=msg)
+
+class ForbiddenEspecialCharacterValidator(Validator):
+    def __init__(self):
+        self.forbidden_set = {"^", "/", "~"}
+
+    def validate(self, content):
+        content_set = set(content)
+        if not self.forbidden_set.isdisjoint(content_set):
+            msg = "Passwords can't have \"^ ~ or /\"!"
+            raise ForbiddenSpecialCharacterException(detail=msg)

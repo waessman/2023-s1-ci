@@ -24,3 +24,6 @@ class NoUpperCaseException(InvalidPasswordException):
 
 class EspecialCharacterException(InvalidPasswordException):
     pass
+
+class ForbiddenSpecialCharacterException(InvalidPasswordException):
+    pass

@@ -9,6 +9,7 @@ from .string_validators import (
     LowerCaseValidator,
     UpperCaseValidator,
     Validator,
+    ForbiddenEspecialCharacterValidator,
 )
 
 
@@ -31,6 +32,7 @@ class PasswordValidator(BaseModel):
             LowerCaseValidator(),
             UpperCaseValidator(),
             EspecialCharacterValidator(),
+            ForbiddenEspecialCharacterValidator(),
         ]
         return validators
 
